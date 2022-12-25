@@ -59,10 +59,10 @@ public final class Constants {
     //CAN ID
     public static final int kArm = 17;
 
-    //PID Controller Constants
-    public static final double kP = 0;
+    //PID Controller Constants for Arm
+    public static final double kP = .6;
     public static final double kI = 0;
-    public static final double kD = 0;
+    public static final double kD = .1;
     public static final double kIz = 0;
     public static final double kFF = 0.000156;
 
