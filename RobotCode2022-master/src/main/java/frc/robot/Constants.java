@@ -72,13 +72,17 @@ public final class Constants {
 
   public static final class ArmConstants {
 
+    //CAN ID
     public static final int kArm = 17;
 
+    //PID Controller Constants
     public static final double kP = 0;
     public static final double kI = 0;
     public static final double kD = 0;
     public static final double kIz = 0;
     public static final double kFF = 0.000156;
+
+    //Trapezoidal Motion Profile Constants
     public static final double kMaxOutput = 1;
     public static final double kMinOutput = -1;
     public static final double kMaxVdown = 2500;
@@ -88,10 +92,9 @@ public final class Constants {
     public static final double kMaxAdown = 1000;
     public static final double kAllE = 0;
 
+    //Encoder Constants Accounted for Gear Ratio
     public static final double kRotationsUp = 0.5;
     public static final double kRotationsDown = 27.5;
-
-    
 
   }
 

@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Arm extends SubsystemBase {
+
+  //Declaring the arm motor, PID controller, and encoder
   private CANSparkMax m_arm = new CANSparkMax(Constants.ArmConstants.kArm, MotorType.kBrushless);
   private SparkMaxPIDController m_pidController = m_arm.getPIDController();
   private RelativeEncoder m_encoder = m_arm.getEncoder();
@@ -24,11 +26,16 @@ public class Arm extends SubsystemBase {
   }
 
   public void ArmDown() {
+    //Setting the PID values used to position the arm at the down position and to hold it there through constant adjustments
     m_pidController.setP(Constants.ArmConstants.kP);
     m_pidController.setI(Constants.ArmConstants.kI);
     m_pidController.setD(Constants.ArmConstants.kD);
+
+    //Setting the feed forward values which account for the weight of the arm and the friction of the arm and motor 
     m_pidController.setIZone(Constants.ArmConstants.kIz);
     m_pidController.setFF(Constants.ArmConstants.kFF);
+
+    //Setting the values for the trapazoidal motion profile which smooths out the motion of the arm through the use of a trapezoid shaped velocity curve.
     m_pidController.setOutputRange(Constants.ArmConstants.kMinOutput, Constants.ArmConstants.kMaxOutput);
     m_pidController.setSmartMotionMaxVelocity(Constants.ArmConstants.kMaxVdown, 0);
     m_pidController.setSmartMotionMinOutputVelocity(Constants.ArmConstants.kMinV, 0);
@@ -38,11 +45,16 @@ public class Arm extends SubsystemBase {
   }
 
   public void ArmUp() {
+    //Setting the PID values used to position the arm at the up position and to hold it there through constant adjustments
     m_pidController.setP(Constants.ArmConstants.kP);
     m_pidController.setI(Constants.ArmConstants.kI);
     m_pidController.setD(Constants.ArmConstants.kD);
+
+    //Setting the feed forward values which account for the weight of the arm and the friction of the arm and motor
     m_pidController.setIZone(Constants.ArmConstants.kIz);
     m_pidController.setFF(Constants.ArmConstants.kFF);
+
+    //Setting the values for the trapazoidal motion profile which smooths out the motion of the arm through the use of a trapezoid shaped velocity curve.
     m_pidController.setOutputRange(Constants.ArmConstants.kMinOutput, Constants.ArmConstants.kMaxOutput);
     m_pidController.setSmartMotionMaxVelocity(Constants.ArmConstants.kMaxVup, 0);
     m_pidController.setSmartMotionMinOutputVelocity(Constants.ArmConstants.kMinV, 0);
@@ -55,9 +67,6 @@ public class Arm extends SubsystemBase {
   public void periodic() {
 
     // display PID coefficients on SmartDashboard
-
-    // display Smart Motion coefficients
-  
     SmartDashboard.putNumber("ArmEncoderPosition", m_encoder.getPosition());
     SmartDashboard.putData(this);
   }
